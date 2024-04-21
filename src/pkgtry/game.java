@@ -4,6 +4,9 @@
  */
 package pkgtry;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Suenlie
@@ -63,6 +66,58 @@ class Bird extends Character{
     }
 }
 
+class Beast extends Character{
+    public Beast(int healthPoints){
+        super(healthPoints);
+    }
+    
+    public void singleCombat(Character target){
+        int damage = 79;
+        target.takeDamage(damage);
+    }
+    
+    public void nutCracker(Character target){
+        int damage = 119;
+        target.takeDamage(damage);
+    }
+    
+    public void nutThrow(Character target){
+        int damage = 119;
+        target.takeDamage(damage);
+    }
+    
+    public void ivory(Character target){
+        int damage = 59;
+        target.takeDamage(damage);
+    }
+}
+
+class Plant extends Character{
+    public Plant(int healthPoints){
+        super(healthPoints);
+    }
+    
+    public void vegebite(Character target){
+        int damage = 30;
+        target.takeDamage(damage);
+    }
+    
+    public void carrot(Character target){
+        int damage = 59;
+        target.takeDamage(damage);
+    }
+    
+    public void pricklyTrap(Character target){
+        int damage = 119;
+        target.takeDamage(damage);
+    }
+    
+    public void disguise(Character target){
+        int damage = 19;
+        target.takeDamage(damage);
+    }
+}
+
 class Enemy extends Character{
     public Enemy(int healthPoints){
         super(healthPoints);
@@ -105,16 +160,36 @@ public class game extends javax.swing.JFrame {
         Enemy enemy = new Enemy(599);
         int enemyHealth = enemy.getHealthPoints();
         enemyhp.setText("Enemy: "+enemyHealth+" Hp");
+        
+        beasthp.setText("Beast: "+beastHealth+" hp");
+        planthp.setText("Beast: "+plantHealth+" hp");
+        
+        energyCounter.setText("Energy: "+energy);
+        
+        
     }
-    int count = 0;
+    int energy = 3;
     int alloutshot = 0;
     int eggbomb = 0;
     int blackmail = 0;
     int trumphcard = 0;
+    int singleCombat = 0;
+    int ivory = 0;
+    int nutCracker = 0;
+    int nutThrow = 0;
+    int carrot = 0;
+    int disguise = 0;
+    int vegebite = 0;
+    int pricklyTrap = 0;
     Enemy enemy = new Enemy(599);
     int enemyHealth = enemy.getHealthPoints();
     Bird bird = new Bird(320);
     int birdHealth = bird.getHealthPoints();
+    Beast beast = new Beast(360);
+    int beastHealth = beast.getHealthPoints();
+    Plant plant = new Plant(560);
+    int plantHealth = plant.getHealthPoints();
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -125,25 +200,26 @@ public class game extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        birdPanel = new javax.swing.JPanel();
+        btnbird1 = new javax.swing.JButton();
+        btnbird2 = new javax.swing.JButton();
+        btnbird3 = new javax.swing.JButton();
+        btnbird4 = new javax.swing.JButton();
+        beastPanel = new javax.swing.JPanel();
+        btnbeast1 = new javax.swing.JButton();
+        btnbeast2 = new javax.swing.JButton();
+        btnbeast3 = new javax.swing.JButton();
+        btnbeast4 = new javax.swing.JButton();
+        plantPanel = new javax.swing.JPanel();
+        plantbtn1 = new javax.swing.JButton();
+        plantbtn2 = new javax.swing.JButton();
+        plantbtn3 = new javax.swing.JButton();
+        plantbtn4 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        energyCounter = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -153,137 +229,240 @@ public class game extends javax.swing.JFrame {
         btnEndTurn = new javax.swing.JButton();
         enemyhp = new javax.swing.JLabel();
         enemyChecker = new javax.swing.JLabel();
+        plantDied = new javax.swing.JLabel();
+        beastDied = new javax.swing.JLabel();
+        birdDied = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Bird"));
+        birdPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bird"));
 
-        jButton1.setText("1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnbird1.setText("1");
+        btnbird1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbird1MouseClicked(evt);
+            }
+        });
+        btnbird1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnbird1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnbird2.setText("2");
+        btnbird2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbird2MouseClicked(evt);
+            }
+        });
+        btnbird2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnbird2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnbird3.setText("3");
+        btnbird3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbird3MouseClicked(evt);
+            }
+        });
+        btnbird3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnbird3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnbird4.setText("4");
+        btnbird4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbird4MouseClicked(evt);
+            }
+        });
+        btnbird4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnbird4ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout birdPanelLayout = new javax.swing.GroupLayout(birdPanel);
+        birdPanel.setLayout(birdPanelLayout);
+        birdPanelLayout.setHorizontalGroup(
+            birdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(birdPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbird1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbird2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbird3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbird4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        birdPanelLayout.setVerticalGroup(
+            birdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(birdPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(birdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnbird1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnbird2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnbird3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnbird4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Beast"));
+        beastPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Beast"));
 
-        jButton5.setText("5");
+        btnbeast1.setText("5");
+        btnbeast1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbeast1MouseClicked(evt);
+            }
+        });
+        btnbeast1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbeast1ActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("6");
+        btnbeast2.setText("6");
+        btnbeast2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbeast2MouseClicked(evt);
+            }
+        });
+        btnbeast2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbeast2ActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("7");
+        btnbeast3.setText("7");
+        btnbeast3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbeast3MouseClicked(evt);
+            }
+        });
+        btnbeast3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbeast3ActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText("8");
+        btnbeast4.setText("8");
+        btnbeast4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbeast4MouseClicked(evt);
+            }
+        });
+        btnbeast4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbeast4ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout beastPanelLayout = new javax.swing.GroupLayout(beastPanel);
+        beastPanel.setLayout(beastPanelLayout);
+        beastPanelLayout.setHorizontalGroup(
+            beastPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(beastPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbeast1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbeast2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbeast3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbeast4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        beastPanelLayout.setVerticalGroup(
+            beastPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(beastPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(beastPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnbeast1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnbeast2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnbeast3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnbeast4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Plant"));
+        plantPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Plant"));
 
-        jButton9.setText("9");
+        plantbtn1.setText("9");
+        plantbtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                plantbtn1MouseClicked(evt);
+            }
+        });
+        plantbtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plantbtn1ActionPerformed(evt);
+            }
+        });
 
-        jButton10.setText("1");
+        plantbtn2.setText("1");
+        plantbtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                plantbtn2MouseClicked(evt);
+            }
+        });
+        plantbtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plantbtn2ActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("2");
+        plantbtn3.setText("2");
+        plantbtn3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                plantbtn3MouseClicked(evt);
+            }
+        });
+        plantbtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plantbtn3ActionPerformed(evt);
+            }
+        });
 
-        jButton12.setText("3");
+        plantbtn4.setText("3");
+        plantbtn4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                plantbtn4MouseClicked(evt);
+            }
+        });
+        plantbtn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plantbtn4ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout plantPanelLayout = new javax.swing.GroupLayout(plantPanel);
+        plantPanel.setLayout(plantPanelLayout);
+        plantPanelLayout.setHorizontalGroup(
+            plantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plantPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plantbtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plantbtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plantbtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plantbtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        plantPanelLayout.setVerticalGroup(
+            plantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plantPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(plantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(plantbtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(plantbtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plantbtn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plantbtn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -293,6 +472,8 @@ public class game extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pkgtry/images/plantaxie (1).png"))); // NOI18N
 
+        energyCounter.setText("Energy: ");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -300,24 +481,29 @@ public class game extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(energyCounter)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel2)))
+                        .addGap(21, 21, 21)
+                        .addComponent(energyCounter)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -328,14 +514,12 @@ public class game extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         birdhp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -382,6 +566,15 @@ public class game extends javax.swing.JFrame {
         enemyhp.setBackground(new java.awt.Color(204, 204, 204));
         enemyhp.setOpaque(true);
 
+        plantDied.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        plantDied.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        beastDied.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        beastDied.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        birdDied.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        birdDied.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -389,58 +582,114 @@ public class game extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(birdDied, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 23, Short.MAX_VALUE)
+                                .addComponent(birdPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(beastDied, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(beastPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnEndTurn)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(enemyhp, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enemyChecker, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 31, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enemyhp, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enemyChecker, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(plantDied, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnEndTurn)
+                                .addGap(22, 22, 22))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(plantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 66, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(enemyChecker, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(enemyhp, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btnEndTurn)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEndTurn)
+                        .addGap(33, 33, 33)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(plantDied, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(birdDied, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                        .addComponent(beastDied, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(beastPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plantPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(birdPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnbird1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbird1ActionPerformed
         // TODO add your handling code here:
-        alloutshot = 1;
-        count++;
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if(energy != 0){
+            alloutshot = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            btnbird1.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_btnbird1ActionPerformed
 
     private void btnEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndTurnActionPerformed
         // TODO add your handling code here:
+        plantbtn4.setBackground(new Color(255,255,255));
+        plantbtn3.setBackground(new Color(255,255,255));
+        plantbtn2.setBackground(new Color(255,255,255));
+        plantbtn1.setBackground(new Color(255,255,255));
+        btnbird1.setBackground(new Color(255,255,255));
+        btnbird2.setBackground(new Color(255,255,255));
+        btnbird3.setBackground(new Color(255,255,255));
+        btnbird4.setBackground(new Color(255,255,255));
+        btnbeast1.setBackground(new Color(255,255,255));
+        btnbeast2.setBackground(new Color(255,255,255));
+        btnbeast3.setBackground(new Color(255,255,255));
+        btnbeast4.setBackground(new Color(255,255,255));
+        
+        btnbird1.setEnabled(true);
+        btnbird2.setEnabled(true);
+        btnbird3.setEnabled(true);
+        btnbird4.setEnabled(true);
+        btnbeast1.setEnabled(true);
+        btnbeast2.setEnabled(true);
+        btnbeast3.setEnabled(true);
+        btnbeast4.setEnabled(true);
+        plantbtn1.setEnabled(true);
+        plantbtn2.setEnabled(true);
+        plantbtn3.setEnabled(true);
+        plantbtn4.setEnabled(true);
+        
+        energy+=2;
+        energyCounter.setText("Energy: "+energy);
+        
         if(alloutshot == 1){
             bird.allOutShot(enemy);
             alloutshot = 0;
@@ -461,30 +710,306 @@ public class game extends javax.swing.JFrame {
             blackmail = 0;
         }
         
-        if(!enemy.isAlive()){
-            enemyChecker.setText("Enemy has died.");
+        if(singleCombat == 1){
+            beast.singleCombat(enemy);
+            singleCombat = 0;
         }
+        
+        if(ivory == 1){
+            beast.ivory(enemy);
+            ivory = 0;
+        }
+        
+        if(nutCracker == 1){
+            beast.nutCracker(enemy);
+            nutCracker = 0;
+        }
+        
+        if(nutThrow == 1){
+            beast.nutThrow(enemy);
+            nutThrow = 0;
+        }
+        
+        if(pricklyTrap == 1){
+            plant.pricklyTrap(enemy);
+            pricklyTrap = 0;
+        }
+        
+        if(vegebite == 1){
+            plant.vegebite(enemy);
+            vegebite = 0;
+        }
+        
+        if(disguise == 1){
+            plant.disguise(enemy);
+            disguise = 0;
+        }
+        
+        if(carrot == 1){
+            plant.carrot(enemy);
+            carrot = 0;
+        }
+        
+        
+        
+        
+        if(plant.isAlive()){
+            enemy.enemyAttack1(plant);
+            enemy.enemyAttack2(plant);
+            enemy.enemyAttack3(plant);
+            enemy.enemyAttack4(plant);
+            plantHealth = plant.getHealthPoints();
+            planthp.setText("Plant: "+plantHealth+" hp");
+        }else if(!plant.isAlive() && beast.isAlive()){
+            enemy.enemyAttack1(beast);
+            enemy.enemyAttack2(beast);
+            enemy.enemyAttack3(beast);
+            enemy.enemyAttack4(beast);
+            beastHealth = beast.getHealthPoints();
+            beasthp.setText("Beast: "+beastHealth+" hp");
+        }
+        else{
+            enemy.enemyAttack1(bird);
+            enemy.enemyAttack2(bird);
+            enemy.enemyAttack3(bird);
+            enemy.enemyAttack4(bird);
+            birdHealth = bird.getHealthPoints();
+            birdhp.setText("Bird: "+birdHealth+" hp");
+        }
+        
         enemyHealth = enemy.getHealthPoints();
         enemyhp.setText("Enemy: "+enemyHealth+" hp");
+        
+        if(!enemy.isAlive()){
+            enemyChecker.setText("Enemy has died.");
+            JOptionPane.showMessageDialog(null, "You defeated the first enemy", "CONGRATULATIONS", JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
+        }
+        
+        if(!plant.isAlive()){
+            plantbtn1.setEnabled( false );
+            plantbtn2.setEnabled( false );
+            plantbtn3.setEnabled( false );
+            plantbtn4.setEnabled( false );
+            plantDied.setText("Your plant died!");
+        }
+        
+        if(!beast.isAlive()){
+            btnbeast1.setEnabled( false );
+            btnbeast2.setEnabled( false );
+            btnbeast3.setEnabled( false );
+            btnbeast4.setEnabled( false );
+            beastDied.setText("Your beast died!");
+            
+        }
+        
+        if(!bird.isAlive()){
+            btnbird1.setEnabled( false );
+            btnbird2.setEnabled( false );
+            btnbird3.setEnabled( false );
+            btnbird4.setEnabled( false );
+            birdDied.setText("Your bird died!");
+            JOptionPane.showMessageDialog(null, "You lost", "FAILED", JOptionPane.WARNING_MESSAGE);
+            this.setVisible(false);
+        }
+        
+        
     }//GEN-LAST:event_btnEndTurnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnbird2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbird2ActionPerformed
         // TODO add your handling code here:
-        eggbomb = 1;
-        count++;
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if(energy != 0){
+           eggbomb = 1;
+           energy--;
+           energyCounter.setText("Energy: "+energy);
+        }else{
+            btnbird2.setEnabled(false);
+        }
+        
+        
+    }//GEN-LAST:event_btnbird2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnbird3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbird3ActionPerformed
         // TODO add your handling code here:
-        blackmail = 1;
-        count++;
-    }//GEN-LAST:event_jButton3ActionPerformed
+        if(energy != 0){
+            blackmail = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            btnbird3.setEnabled(false);
+        }
+        
+        
+    }//GEN-LAST:event_btnbird3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnbird4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbird4ActionPerformed
         // TODO add your handling code here:
-        trumphcard = 1;
-        count++;
-    }//GEN-LAST:event_jButton4ActionPerformed
+        if(energy != 0){
+            trumphcard = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            btnbird4.setEnabled(false);
+        }
+        
+        
+    }//GEN-LAST:event_btnbird4ActionPerformed
+
+    private void btnbird1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbird1MouseClicked
+        // TODO add your handling code here:
+        btnbird1.setBackground(Color.red);
+    }//GEN-LAST:event_btnbird1MouseClicked
+
+    private void btnbird2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbird2MouseClicked
+        // TODO add your handling code here:
+        btnbird2.setBackground(Color.red);
+    }//GEN-LAST:event_btnbird2MouseClicked
+
+    private void btnbird3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbird3MouseClicked
+        // TODO add your handling code here:
+        btnbird3.setBackground(Color.red);
+    }//GEN-LAST:event_btnbird3MouseClicked
+
+    private void btnbird4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbird4MouseClicked
+        // TODO add your handling code here:
+        btnbird4.setBackground(Color.red);
+    }//GEN-LAST:event_btnbird4MouseClicked
+
+    private void btnbeast1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbeast1ActionPerformed
+        // TODO add your handling code here:
+        if(energy != 0){
+            singleCombat = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            btnbeast1.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_btnbeast1ActionPerformed
+
+    private void btnbeast2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbeast2ActionPerformed
+        // TODO add your handling code here:
+        if(energy != 0){
+            ivory = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            btnbeast2.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_btnbeast2ActionPerformed
+
+    private void btnbeast3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbeast3ActionPerformed
+        // TODO add your handling code here:
+        if(energy != 0){
+            nutCracker = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            btnbeast3.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_btnbeast3ActionPerformed
+
+    private void btnbeast4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbeast4ActionPerformed
+        // TODO add your handling code here:
+        if(energy != 0){
+            nutThrow = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            btnbeast4.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_btnbeast4ActionPerformed
+
+    private void btnbeast1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbeast1MouseClicked
+        // TODO add your handling code here:
+        btnbeast1.setBackground(Color.red);
+    }//GEN-LAST:event_btnbeast1MouseClicked
+
+    private void btnbeast2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbeast2MouseClicked
+        // TODO add your handling code here:
+        btnbeast2.setBackground(Color.red);
+    }//GEN-LAST:event_btnbeast2MouseClicked
+
+    private void btnbeast3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbeast3MouseClicked
+        // TODO add your handling code here:
+        btnbeast3.setBackground(Color.red);
+    }//GEN-LAST:event_btnbeast3MouseClicked
+
+    private void btnbeast4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbeast4MouseClicked
+        // TODO add your handling code here:
+        btnbeast4.setBackground(Color.red);
+    }//GEN-LAST:event_btnbeast4MouseClicked
+
+    private void plantbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plantbtn1ActionPerformed
+        // TODO add your handling code here:
+        if(energy != 0){
+            pricklyTrap = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            plantbtn1.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_plantbtn1ActionPerformed
+
+    private void plantbtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plantbtn2ActionPerformed
+        // TODO add your handling code here:
+        if(energy != 0){
+            disguise = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            plantbtn2.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_plantbtn2ActionPerformed
+
+    private void plantbtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plantbtn3ActionPerformed
+        // TODO add your handling code here:
+        if(energy != 0){
+            vegebite = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            plantbtn3.setEnabled(false);
+        }
+       
+    }//GEN-LAST:event_plantbtn3ActionPerformed
+
+    private void plantbtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plantbtn4ActionPerformed
+        // TODO add your handling code here:
+        if(energy != 0){
+            carrot = 1;
+            energy--;
+            energyCounter.setText("Energy: "+energy);
+        }else{
+            plantbtn4.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_plantbtn4ActionPerformed
+
+    private void plantbtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plantbtn1MouseClicked
+        // TODO add your handling code here:
+        plantbtn1.setBackground(Color.red);
+    }//GEN-LAST:event_plantbtn1MouseClicked
+
+    private void plantbtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plantbtn2MouseClicked
+        // TODO add your handling code here:
+        plantbtn2.setBackground(Color.red);
+    }//GEN-LAST:event_plantbtn2MouseClicked
+
+    private void plantbtn3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plantbtn3MouseClicked
+        // TODO add your handling code here:
+        plantbtn3.setBackground(Color.red);
+    }//GEN-LAST:event_plantbtn3MouseClicked
+
+    private void plantbtn4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plantbtn4MouseClicked
+        // TODO add your handling code here:
+        plantbtn4.setBackground(Color.red);
+    }//GEN-LAST:event_plantbtn4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -522,33 +1047,37 @@ public class game extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel beastDied;
+    private javax.swing.JPanel beastPanel;
     private javax.swing.JLabel beasthp;
+    private javax.swing.JLabel birdDied;
+    private javax.swing.JPanel birdPanel;
     private javax.swing.JLabel birdhp;
     private javax.swing.JButton btnEndTurn;
+    private javax.swing.JButton btnbeast1;
+    private javax.swing.JButton btnbeast2;
+    private javax.swing.JButton btnbeast3;
+    private javax.swing.JButton btnbeast4;
+    private javax.swing.JButton btnbird1;
+    private javax.swing.JButton btnbird2;
+    private javax.swing.JButton btnbird3;
+    private javax.swing.JButton btnbird4;
     private javax.swing.JLabel enemyChecker;
     private javax.swing.JLabel enemyhp;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel energyCounter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel plantDied;
+    private javax.swing.JPanel plantPanel;
+    private javax.swing.JButton plantbtn1;
+    private javax.swing.JButton plantbtn2;
+    private javax.swing.JButton plantbtn3;
+    private javax.swing.JButton plantbtn4;
     private javax.swing.JLabel planthp;
     // End of variables declaration//GEN-END:variables
 
